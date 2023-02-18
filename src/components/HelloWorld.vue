@@ -3,7 +3,7 @@ defineProps<{
     msg: string;
 }>();
 const bar = [1, 2, 3, 4];
-goo  
+goo   
 const foo = 'hello'
 </script>
 
