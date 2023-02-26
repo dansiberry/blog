@@ -37,7 +37,7 @@ const orderedArticles = computed(() => {
             return a.title > b.title ? 1 : -1;
         } else if (orderBy.value === 'Date Desc.') {
             return a.createdAt > b.createdAt ? -1 : 1;
-        } else if (orderBy.value === 'Date Asc.') {
+        } else {
             return a.createdAt > b.createdAt ? 1 : -1;
         }
     });
