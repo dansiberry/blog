@@ -23,6 +23,6 @@ jobs:
         touch .env
         echo VITE_API_URL=https://danielsiberry.com/blog/api >> .env
         cat .env
-    - run: yarn
-    - run: yarn build
+    - run: npm install
+    - run: npm run build
     - run: cp -r /var/www/runners/actions-runner-blog/_work/blog/blog/dist/. /var/www/blog
