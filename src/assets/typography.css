@@ -1,0 +1,87 @@
+.h1,
+.wysiwyg h1 {
+    @apply text-3xl font-bold leading-none tracking-tight;
+}
+@screen lg {
+    .h1,
+    .wysiwyg h1 {
+        @apply text-4xl;
+    }
+}
+
+.h2,
+.wysiwyg h2 {
+    @apply text-2xl font-bold leading-tight tracking-tight;
+
+    @screen lg {
+        @apply text-3xl;
+    }
+}
+
+.h3,
+.wysiwyg h3 {
+    @apply text-xl font-bold leading-snug tracking-tight;
+}
+@screen lg {
+    .h3,
+    .wysiwyg h3 {
+        @apply text-2xl;
+    }
+}
+
+.h4,
+.wysiwyg h4 {
+    @apply text-lg font-bold leading-snug tracking-tight;
+}
+@screen lg {
+    .h4,
+    .wysiwyg h4 {
+        @apply text-2xl;
+    }
+}
+
+.h5,
+.wysiwyg h5 {
+    @apply font-bold leading-snug tracking-tight;
+}
+@screen lg {
+    .h5,
+    .wysiwyg h5 {
+        @apply text-xl;
+    }
+}
+
+.wysiwyg {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+        @apply mb-6 mt-10;
+
+        @screen lg {
+            @apply mt-14 pb-10;
+        }
+    }
+
+    ul li {
+        @apply pl-8 relative
+    }
+
+    ul li:before {
+        content: '';
+        @apply bg-black rounded-full w-2 h-2 mt-2 absolute left-0 top-0;
+    }
+
+    p {
+        @apply my-5;
+    }
+
+    figure {
+        @apply my-5;
+    }
+}
+
+.wysiwyg *:first-child {
+    @apply mt-0;
+}

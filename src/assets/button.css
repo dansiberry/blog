@@ -1,0 +1,12 @@
+/* Button styles that are reused throughout the site */
+.button {
+    @apply inline-block rounded bg-cyan-500 px-8 py-3 font-bold text-white;
+}
+
+.button:hover {
+    @apply brightness-75;
+}
+
+.button--small {
+    @apply inline-block rounded bg-cyan-500 px-4 py-2 text-sm font-bold text-white;
+}
