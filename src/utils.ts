@@ -4,4 +4,4 @@ export const formatDate = (timeStamp: string) => {
         month: 'short',
         year: 'numeric'
     });
-}
+};
