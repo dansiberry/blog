@@ -4,9 +4,9 @@ import { RouterLink, RouterView } from 'vue-router';
 
 <template>
     <header class="bg-white/70">
-        <div class="container flex items-center justify-between py-4">
+        <div class="container flex items-center justify-between py-3">
             <RouterLink to="/">
-                <img alt="Blog logo" class="" src="@/assets/logo.svg" width="60" />
+                <img alt="Blog logo" class="" src="@/assets/logo.svg" width="50" />
             </RouterLink>
 
             <nav>

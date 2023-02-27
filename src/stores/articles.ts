@@ -1,4 +1,4 @@
-import { ref, computed } from 'vue';
+import { ref, reactive, computed } from 'vue';
 import { defineStore } from 'pinia';
 import type { Article, Category } from '@/types';
 const apiUrl = import.meta.env.VITE_API_URL;
@@ -45,7 +45,8 @@ export const useArticlesStore = defineStore('article', () => {
                     articles.value.push(data);
                 } else {
                     console.log('exists.. replacing');
-                    articles.value[existing] = data;
+                    articles.value.splice(existing, 1);
+                    articles.value.push(data);
                 }
                 loading.value = false;
             });

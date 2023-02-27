@@ -2,7 +2,7 @@ export type Article = {
     id: number;
     title: string;
     imageUrl: string;
-    category: Category;
+    categories: Category[];
     slug: string;
     fullText: string;
     createdAt: string;

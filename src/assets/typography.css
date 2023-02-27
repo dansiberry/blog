@@ -1,6 +1,6 @@
 .h1,
 .wysiwyg h1 {
-    @apply text-3xl font-bold leading-none tracking-tight;
+    @apply text-4xl font-bold leading-none tracking-tight;
 }
 @screen lg {
     .h1,
@@ -60,7 +60,7 @@
         @apply mb-6 mt-10;
 
         @screen lg {
-            @apply mt-14 pb-10;
+            @apply mt-14 mb-10;
         }
     }
 

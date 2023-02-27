@@ -8,11 +8,11 @@ defineProps<{
 </script>
 
 <template>
-    <ul class="">
+    <ul class="-mb-3">
         <li
             v-for="category in categories"
             :key="category.id"
-            class="mr-2 mb-3 inline-block rounded-full border border-cyan-500 py-1 px-2 text-sm"
+            class="mr-2 mb-3 inline-block rounded-full border border-cyan-500 py-2 px-3 leading-none"
             :class="[
                 activeId === category.id || !interactive ? 'bg-cyan-500 text-white' : 'text-cyan-500',
                 interactive && 'cursor-pointer'
