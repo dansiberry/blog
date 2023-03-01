@@ -16,7 +16,7 @@ const dateFormatted = computed(() => {
 <template>
     <div class="BlogCard">
         <div class="relative h-32 md:h-44">
-            <img class="lazyload absolute h-full w-full object-cover object-center" :src="article.imageUrl" alt="" />
+            <img class="lazyload absolute h-full w-full object-cover object-center" :src="article.imageSmallUrl" alt="" />
             <div
                 class="BlogCard__bar absolute bottom-0 left-0 h-0 w-full bg-cyan-500 transition-all duration-300"
             ></div>

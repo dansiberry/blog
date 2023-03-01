@@ -22,7 +22,7 @@ const article = computed(() => {
 
 <template>
     <main v-if="article" class="">
-        <img :src="article.imageUrl" class="relative -z-10 -mt-20 h-80 w-full object-cover lg:h-[500px]" alt="" />
+        <img :src="article.imageSmallUrl" class="relative -z-10 -mt-20 h-80 w-full object-cover lg:h-[500px]" alt="" />
         <div class="container -mt-20 mb-4 md:mb-10">
             <div class="max-w-[900px] bg-black py-3 px-6 md:py-8 md:px-16">
                 <h1 class="h1 relative z-10 inline max-w-[400px] text-white">

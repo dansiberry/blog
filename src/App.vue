@@ -11,7 +11,6 @@ import { RouterLink, RouterView } from 'vue-router';
 
             <nav>
                 <RouterLink to="/search" class="mx-4 border-black hover:border-b">Search</RouterLink>
-                <RouterLink to="/about" class="mx-4 border-black hover:border-b">About</RouterLink>
             </nav>
         </div>
     </header>

@@ -21,7 +21,7 @@ jobs:
     - name: 'Create env file'
       run: |
         touch .env
-        echo VITE_API_URL=https://danielsiberry.com/blog/api >> .env
+        echo VITE_API_URL=https://danielsiberry.com/api >> .env
         cat .env
     - run: npm install
     - run: npm run build-server
