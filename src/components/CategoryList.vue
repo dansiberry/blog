@@ -17,6 +17,7 @@ defineProps<{
                 activeId === category.id || !interactive ? 'bg-cyan-500 text-white' : 'text-cyan-500',
                 interactive && 'cursor-pointer'
             ]"
+            :data-id="category.id"
             @click="$emit('categoryClick', category.id)"
         >
             {{ category.title }}

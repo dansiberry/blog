@@ -12,7 +12,7 @@ onBeforeMount(() => {
 
 <template>
     <main>
-        <div class="container flex items-center py-12">
+        <div class="hero container flex items-center py-12">
             <div class="text-center md:text-left">
                 <h1
                     class="text-4xl font-bold leading-10 underline decoration-cyan-300 md:text-[60px] md:leading-[60px]"

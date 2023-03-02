@@ -48,17 +48,25 @@ const orderedArticles = computed(() => {
     <main v-if="store.categories.length && orderedArticles.length">
         <div class="container">
             <h1 class="h1 mt-20 mb-12">Browse articles</h1>
-            <div class="justify-between md:flex">
+            <div class="filters justify-between md:flex">
                 <div class="">
                     <h5 class="h5 mb-3">Search</h5>
                     <div class="mb-6">
-                        <input type="text" v-model="searchTerm" class="w-50 h-9 md:w-64" @keyup.enter="fetchArticles" />
-                        <button class="button button--small ml-3" @click="fetchArticles">Submit</button>
+                        <input
+                            type="text"
+                            v-model="searchTerm"
+                            class="w-50 h-9 md:w-64"
+                            id="search-input"
+                            @keyup.enter="fetchArticles"
+                        />
+                        <button class="button button--small ml-3" id="search-submit" @click="fetchArticles">
+                            Submit
+                        </button>
                     </div>
                     <h5 class="h5 mb-3">Categories</h5>
                     <CategoryList
                         :categories="store.categories"
-                        class="text-md pb-8"
+                        class="text-md categories-filter pb-8"
                         :interactive="true"
                         :active-id="activeCategoryId"
                         @category-click="updateCateogory"
@@ -66,7 +74,7 @@ const orderedArticles = computed(() => {
                 </div>
                 <div class="mb-8">
                     <h5 class="h5 mb-3">Order by</h5>
-                    <select v-model="orderBy">
+                    <select v-model="orderBy" class="order-by">
                         <option>Date Desc.</option>
                         <option>Date Asc.</option>
                         <option>Title</option>

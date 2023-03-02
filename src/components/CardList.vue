@@ -22,7 +22,7 @@ const paginatedCards = computed(() => {
 
 <template>
     <div class="">
-        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <div class="CardList grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             <RouterLink
                 v-for="article in paginatedCards"
                 :key="article.id"
