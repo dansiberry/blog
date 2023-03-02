@@ -5,11 +5,10 @@ describe('Homepage', () => {
     });
 
     it('Displays latest blog articles', () => {
-        cy.intercept('/api/articles*').as('getArticles')
-        cy.visit('/')
-        cy.wait('@getArticles').then((interception) => {
+        cy.intercept('/api/articles*').as('getArticles');
+        cy.visit('/');
+        cy.wait('@getArticles').then(() => {
             cy.get('.CardList').children().should('have.length', 3);
-        })
+        });
     });
 });
-

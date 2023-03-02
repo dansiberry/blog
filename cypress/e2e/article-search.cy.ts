@@ -35,7 +35,7 @@ describe('Article search page', () => {
         cy.wait('@getArticles').then(() => {
             cy.get('.order-by')
                 .select('Title')
-                .then((arg) => {
+                .then(() => {
                     cy.get('.BlogCard h3').then(($elements) => {
                         const correctOrder = $elements.get().every((heading, index) => {
                             const nextHeading = $elements.get()[index + 1];
@@ -53,8 +53,8 @@ describe('Article search page', () => {
         cy.intercept('/api/articles.json?category-id=&query=web&*').as('searchArticles');
         cy.visit('/search');
         cy.wait('@getArticles').then(() => {
-            cy.get("#search-input").type("web");
-            cy.get("#search-submit").click();
+            cy.get('#search-input').type('web');
+            cy.get('#search-submit').click();
             cy.wait('@searchArticles').then(() => {
                 cy.get('.BlogCard h3').then(($elements) => {
                     const containsQuery = $elements.get().every((heading) => {
@@ -64,7 +64,7 @@ describe('Article search page', () => {
                     });
                     expect(containsQuery).to.eq(true);
                 });
-            })
+            });
         });
     });
 
@@ -81,7 +81,7 @@ describe('Article search page', () => {
                     });
                     expect(containsCategory).to.eq(true);
                 });
-            })
+            });
         });
     });
 });
