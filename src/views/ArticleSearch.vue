@@ -6,20 +6,22 @@ import CardList from '@/components/CardList.vue';
 
 const store = useArticlesStore();
 
-onBeforeMount(() => {
-    if (!store.articles.length) {
-        store.fetchArticles(9);
-    }
-    if (!store.categories.length) {
-        store.fetchCategories();
-    }
-});
-
 const activeCategoryId = ref(-1);
 
 const orderBy = ref('Date Desc.');
 
 const searchTerm = ref('');
+
+onBeforeMount(() => {
+    if (store.articles.length < 9) {
+        store.fetchArticles(9);
+        activeCategoryId.value = -1;
+        searchTerm.value = '';
+    }
+    if (!store.categories.length) {
+        store.fetchCategories();
+    }
+});
 
 const fetchArticles = () => {
     const category = activeCategoryId.value === -1 ? '' : activeCategoryId.value;
@@ -42,21 +44,30 @@ const orderedArticles = computed(() => {
         }
     });
 });
+
+const noFilterActive = computed(() => {
+    return searchTerm.value === '' && activeCategoryId.value === -1;
+});
+
+const noArticlesFound = computed(() => {
+    return !store.loading && orderedArticles.value.length === 0;
+});
 </script>
 
 <template>
-    <main v-if="store.categories.length && orderedArticles.length">
+    <main>
         <div class="container">
             <h1 class="h1 mt-20 mb-12">Browse articles</h1>
             <div class="filters justify-between md:flex">
                 <div class="">
                     <h5 class="h5 mb-3">Search</h5>
-                    <div class="mb-6">
+                    <div class="mb-6" :class="{ 'pointer-events-none opacity-50': store.loading }">
                         <input
                             type="text"
                             v-model="searchTerm"
                             class="w-50 h-9 md:w-64"
                             id="search-input"
+                            :disabled="store.loading"
                             @keyup.enter="fetchArticles"
                         />
                         <button class="button button--small ml-3" id="search-submit" @click="fetchArticles">
@@ -67,6 +78,7 @@ const orderedArticles = computed(() => {
                     <CategoryList
                         :categories="store.categories"
                         class="text-md categories-filter pb-8"
+                        :class="{ 'pointer-events-none opacity-50': store.loading }"
                         :interactive="true"
                         :active-id="activeCategoryId"
                         @category-click="updateCateogory"
@@ -82,10 +94,12 @@ const orderedArticles = computed(() => {
                 </div>
             </div>
         </div>
-        <div class="mt:pb-20 bg-gray-100 pt-4 pb-12 md:pt-14">
-            <h4 v-if="!activeCategoryId" class="h4 container text-gray-500">Recent articles...</h4>
-            <CardList :articles="orderedArticles" class="container mt-10 bg-gray-100" />
+        <div class="mt:pb-20 min-h-[500px] bg-gray-100 pt-4 pb-12 md:pt-14" :class="{ loading: store.loading }">
+            <h3 v-if="noFilterActive" class="h3 container text-gray-500">Recent articles...</h3>
+            <CardList v-if="!store.loading" :articles="orderedArticles" class="container mt-10 bg-gray-100" />
+            <h3 v-if="noArticlesFound" class="h3 container text-gray-500">
+                Sorry, no articles found. Please refine your search.
+            </h3>
         </div>
     </main>
-    <div v-else class="loading loading--infinite h-80"></div>
 </template>
