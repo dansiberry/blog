@@ -1,3 +1,4 @@
+# Configuration for deployment from GitHub to server.
 name: Node.js CI
 
 on:
@@ -21,7 +22,8 @@ jobs:
     - name: 'Create env file'
       run: |
         touch .env
-        echo VITE_API_URL=https://danielsiberry.com/api >> .env
+        echo VITE_API_URL_PROD=https://danielsiberry.com/api >> .env
+        echo VITE_SERVER_BUILD=true >> .env
         cat .env
     - run: npm install
     - run: npm run build-server

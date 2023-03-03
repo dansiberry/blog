@@ -1,3 +1,5 @@
+// Define types for complex objects for better errors and linting during development. 
+  
 export type Article = {
     id: number;
     title: string;

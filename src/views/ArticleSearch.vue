@@ -6,6 +6,7 @@ import CardList from '@/components/CardList.vue';
 
 const store = useArticlesStore();
 
+// Use -1 when no category is active
 const activeCategoryId = ref(-1);
 
 const orderBy = ref('Date Desc.');
@@ -13,27 +14,34 @@ const orderBy = ref('Date Desc.');
 const searchTerm = ref('');
 
 onBeforeMount(() => {
-    if (store.articles.length < 9) {
-        store.fetchArticles(9);
-        activeCategoryId.value = -1;
-        searchTerm.value = '';
+    // Reset query and category inputs
+    activeCategoryId.value = -1;
+    searchTerm.value = '';
+    // Fetch default 50 recent articles if not already fetched on homepage
+    if (store.articles.length <= 1) {
+        store.fetchArticles(50);
     }
+    // Fetch categories if not already fetched
     if (!store.categories.length) {
         store.fetchCategories();
     }
 });
 
 const fetchArticles = () => {
+    // Format API input to emptry string if no category is active.
     const category = activeCategoryId.value === -1 ? '' : activeCategoryId.value;
+    // Fetch 50 articles that match query/category
     store.fetchArticles(50, category, searchTerm.value);
 };
 
 const updateCateogory = (id: number) => {
+    // Deselect category if already active
     activeCategoryId.value = activeCategoryId.value === id ? -1 : id;
     fetchArticles();
 };
 
 const orderedArticles = computed(() => {
+    // Return sorted articles depending on user's choice
     return [...store.articles].sort((a, b) => {
         if (orderBy.value === 'Title') {
             return a.title > b.title ? 1 : -1;
@@ -45,6 +53,7 @@ const orderedArticles = computed(() => {
     });
 });
 
+// Used to know when the default recent articles are showing
 const noFilterActive = computed(() => {
     return searchTerm.value === '' && activeCategoryId.value === -1;
 });

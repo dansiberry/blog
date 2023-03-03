@@ -9,13 +9,16 @@ const route = useRoute();
 const store = useArticlesStore();
 
 onBeforeMount(() => {
+    // Check if article is loaded (including the full text)
     if (article.value && article.value.fullText) return;
+    // Fetch the article from the API using the slug
     store.fetchArticle(route.params.slug as string);
 });
 
 const article = computed(() => {
     const found = store.articles.find((article) => article.slug === (route.params.slug as string));
     if (!found) return null;
+    // Add formatted date to the article object
     return { ...found, dateFormatted: formatDate(found.createdAt) };
 });
 </script>

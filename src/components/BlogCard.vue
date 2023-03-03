@@ -9,6 +9,7 @@ const props = defineProps<{
 }>();
 
 const dateFormatted = computed(() => {
+    // Format date as human readable string using util function
     return formatDate(props.article.createdAt);
 });
 </script>

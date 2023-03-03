@@ -11,9 +11,11 @@ const props = defineProps<{
 const activePage = ref(1);
 
 const totalPages = computed(() => {
+    // Calculate pagination pages by dividing articles into groups of 6
     return Math.ceil(props.articles.length / 6);
 });
 
+// Return current group of articles based on pagination page
 const paginatedCards = computed(() => {
     const base = (activePage.value - 1) * 6;
     return props.articles.slice(base, base + 6);

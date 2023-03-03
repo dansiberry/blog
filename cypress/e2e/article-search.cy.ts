@@ -1,22 +1,29 @@
+// Tests for the article search page
 describe('Article search page', () => {
     it('Displays the filter and search interface', () => {
+        // Visit the search page 
         cy.visit('/search');
+        // Check that the filters elements are on the page.
         cy.get('.filters').should('exist');
     });
 
     it('Displays default view of latest blog articles', () => {
         cy.intercept('/api/articles*').as('getArticles');
         cy.visit('/search');
+        // Wait for articles to load on page
         cy.wait('@getArticles').then(() => {
+            // Check that there are 6 cards showing (first page of results)
             cy.get('.CardList').children().should('have.length', 6);
         });
     });
 
-    it('Sorts articles chronologically by default', () => {
+    it('Sorts articles chronologically (Desc.) by default', () => {
         cy.intercept('/api/articles*').as('getArticles');
         cy.visit('/search');
         cy.wait('@getArticles').then(() => {
+            // Get all blog cards
             cy.get('.BlogCard').then(($elements) => {
+                // Check that every card has a date that is more recent than the next.
                 const correctOrder = $elements.get().every((card, index) => {
                     const nextCard = $elements.get()[index + 1];
                     if (!nextCard) return true;
@@ -37,6 +44,7 @@ describe('Article search page', () => {
                 .select('Title')
                 .then(() => {
                     cy.get('.BlogCard h3').then(($elements) => {
+                        // Check that each title is correctly ordered in relation to the following title. 
                         const correctOrder = $elements.get().every((heading, index) => {
                             const nextHeading = $elements.get()[index + 1];
                             if (!nextHeading) return true;
@@ -55,11 +63,11 @@ describe('Article search page', () => {
         cy.wait('@getArticles').then(() => {
             cy.get('#search-input').type('web');
             cy.get('#search-submit').click();
+            // Wait for API to return results
             cy.wait('@searchArticles').then(() => {
                 cy.get('.BlogCard h3').then(($elements) => {
+                    // Check that all card titles contain the query
                     const containsQuery = $elements.get().every((heading) => {
-                        console.log('here');
-                        console.log(heading.innerText);
                         return heading.innerText.toLowerCase().includes('web');
                     });
                     expect(containsQuery).to.eq(true);
@@ -76,6 +84,7 @@ describe('Article search page', () => {
             cy.get('.categories-filter li[data-id="3"').click();
             cy.wait('@filterArticles').then(() => {
                 cy.get('.BlogCard ul').then(($elements) => {
+                    // Check that all cards contain the category that was selected
                     const containsCategory = $elements.get().every((list) => {
                         return list.querySelector('li[data-id="3"');
                     });
