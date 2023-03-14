@@ -1,7 +1,7 @@
 // Tests for the article search page
 describe('Article search page', () => {
     it('Displays the filter and search interface', () => {
-        // Visit the search page 
+        // Visit the search page
         cy.visit('/search');
         // Check that the filters elements are on the page.
         cy.get('.filters').should('exist');
@@ -44,7 +44,7 @@ describe('Article search page', () => {
                 .select('Title')
                 .then(() => {
                     cy.get('.BlogCard h3').then(($elements) => {
-                        // Check that each title is correctly ordered in relation to the following title. 
+                        // Check that each title is correctly ordered in relation to the following title.
                         const correctOrder = $elements.get().every((heading, index) => {
                             const nextHeading = $elements.get()[index + 1];
                             if (!nextHeading) return true;

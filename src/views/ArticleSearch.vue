@@ -18,9 +18,7 @@ onBeforeMount(() => {
     activeCategoryId.value = -1;
     searchTerm.value = '';
     // Fetch default 50 recent articles if not already fetched on homepage
-    if (store.articles.length <= 1) {
-        store.fetchArticles(50);
-    }
+    store.fetchArticles(50);
     // Fetch categories if not already fetched
     if (!store.categories.length) {
         store.fetchCategories();
