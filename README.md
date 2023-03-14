@@ -13,6 +13,7 @@ For example, the default articles response can be found at https://danielsiberry
 ## Running the app for development
 
 Node v18.14.1 is required for running the app with Vite. The node modules are installed for that version.
+Navigate in terminal to the root of the project and run the development command:
 ```sh
 npm run dev
 ```
