@@ -75,6 +75,16 @@
         @apply bg-black rounded-full w-2 h-2 mt-2 absolute left-0 top-0;
     }
 
+    iframe {
+        width: 340px;
+        height: 190px;
+
+        @screen md {
+            width: 560px;
+            height: 315px;
+        }
+    }
+
     p {
         @apply my-5;
     }
