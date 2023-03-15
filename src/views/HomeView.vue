@@ -6,8 +6,8 @@ import { useArticlesStore } from '@/stores/articles';
 const store = useArticlesStore();
 
 onBeforeMount(() => {
-    // Load default view of firt 20 articles
-    store.fetchArticles(20);
+    // Load most recent 3 articles
+    store.fetchArticles(3);
 });
 </script>
 
