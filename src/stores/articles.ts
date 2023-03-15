@@ -11,6 +11,8 @@ export const useArticlesStore = defineStore('article', () => {
     const categories = ref<Category[]>([]);
     // Used throughout the app to show loading spinners when API calls are being made
     const loading = ref(false);
+    // Used to flag when the default API response of recent articles is loaded
+    const filterActive = ref(true);
 
     // Fetche articles from the API for listing pages. Does not include full text.
     // By default returns articles in chronological order.
@@ -23,6 +25,7 @@ export const useArticlesStore = defineStore('article', () => {
             .then((data) => {
                 articles.value = data.data;
                 loading.value = false;
+                filterActive.value = !!categoryId || !!query;
             });
     };
 
@@ -57,5 +60,5 @@ export const useArticlesStore = defineStore('article', () => {
             });
     };
 
-    return { articles, categories, fetchArticles, fetchArticle, loading, fetchCategories };
+    return { articles, categories, fetchArticles, fetchArticle, loading, filterActive, fetchCategories };
 });

@@ -51,11 +51,6 @@ const orderedArticles = computed(() => {
     });
 });
 
-// Used to know when the default recent articles are showing
-const noFilterActive = computed(() => {
-    return searchTerm.value === '' && activeCategoryId.value === -1;
-});
-
 const noArticlesFound = computed(() => {
     return !store.loading && orderedArticles.value.length === 0;
 });
@@ -102,7 +97,12 @@ const noArticlesFound = computed(() => {
             </div>
         </div>
         <div class="mt:pb-20 min-h-[500px] bg-gray-100 pt-4 pb-12 md:pt-14" :class="{ loading: store.loading }">
-            <h3 v-if="noFilterActive" class="h3 container text-gray-500">Recent articles...</h3>
+            <h3
+                v-if="!store.filterActive && orderedArticles.length && !store.loading"
+                class="h3 container text-gray-500"
+            >
+                Recent articles...
+            </h3>
             <CardList v-if="!store.loading" :articles="orderedArticles" class="container mt-10 bg-gray-100" />
             <h3 v-if="noArticlesFound" class="h3 container text-gray-500">
                 Sorry, no articles found. Please refine your search.
