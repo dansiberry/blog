@@ -9,6 +9,8 @@ export type Article = {
     slug: string;
     fullText: string;
     createdAt: string;
+    authorName: string;
+    authorImage: string;
 };
 
 export type Category = {

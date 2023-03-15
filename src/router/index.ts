@@ -6,6 +6,10 @@ import ArticleSearch from '@/views/ArticleSearch.vue';
 // Define the SPA routes for the app
 const router = createRouter({
     history: createWebHistory(import.meta.env.BASE_URL),
+    scrollBehavior() {
+        // always scroll to top
+        return { top: 0 };
+    },
     routes: [
         {
             path: '/',
